@@ -13,6 +13,7 @@
 
 #   define RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 // limits maximum brightness of LEDs (max 255). Higher may cause the controller to crash.
 #   define RGB_MATRIX_SLEEP // turn off effects when suspended
+#   define RGB_MATRIX_TIMEOUT 6000
 #   define SPLIT_TRANSPORT_MIRROR // If LED_MATRIX_KEYPRESSES or LED_MATRIX_KEYRELEASES is enabled, you also will want to enable SPLIT_TRANSPORT_MIRROR
 #   define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_GRADIENT_LEFT_RIGHT
 
