@@ -261,6 +261,7 @@ static void render_logo(void) {
     oled_write_P(qmk_logo, false);
 }
 
+// TODO: figure out extra wpm line issue
 void print_keymap_status(void) {
     oled_write_P(PSTR("\n\n"), false);
     switch (get_highest_layer(default_layer_state)) {
