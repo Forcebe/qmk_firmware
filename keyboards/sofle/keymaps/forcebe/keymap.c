@@ -219,6 +219,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
+// TODO: Indicate win/mac mode
 bool rgb_matrix_indicators_user(void) {
     switch (get_highest_layer(layer_state)) {
         case 0:
@@ -264,10 +265,10 @@ void print_keymap_status(void) {
     oled_write_P(PSTR("\n\n"), false);
     switch (get_highest_layer(default_layer_state)) {
         case 0:
-            oled_write_P(PSTR("MacOS\n"), false);
+            oled_write_ln_P(PSTR("MacOS"), false);
             break;
         case 1:
-            oled_write_P(PSTR("Win\n"), false);
+            oled_write_ln_P(PSTR("Win"), false);
             break;
         default:
             oled_write_P(PSTR("Mod\n"), false);
@@ -281,20 +282,20 @@ void print_keymap_status(void) {
             oled_write_P(PSTR("Base\n"), false);
             break;
         case 2:
-            oled_write_P(PSTR("Raise\n"), false);
+            oled_write_P(PSTR("Raise"), false);
             break;
         case 3:
-            oled_write_P(PSTR("Lower\n"), false);
+            oled_write_P(PSTR("Lower"), false);
             break;
         case 4:
-            oled_write_P(PSTR("Adj.\n"), false);
+            oled_write_P(PSTR("Adj."), false);
             break;
         default:
-            oled_write_P(PSTR("Undef\n"), false);
+            oled_write_ln_P(PSTR("Undef"), false);
     }
     oled_write_P(PSTR("\n\n"), false);
-    oled_write_P(PSTR("WPM: "), false);
-    oled_write(get_u8_str(get_current_wpm(), ' '), false);
+    oled_write_ln_P(PSTR("WPM: "), false);
+    oled_write(get_u8_str(get_current_wpm(), '0'), false);
 }
 
 bool oled_task_user(void) {
