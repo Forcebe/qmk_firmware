@@ -26,7 +26,6 @@ enum custom_keycodes {
 #define KC_MAC PDF(_MAC)
 #define KC_WIN PDF(_WIN)
 
-//TODO: Figure out win layers vs mac layers
 //TODO: Can I use layer_on in a custom function to swap between win/mac mods for the inactive hand?
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -264,7 +263,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  ),
 };
 
-// TODO: Indicate win/mac mode
 bool rgb_matrix_indicators_user(void) {
     // Base layer indicators
     switch (get_highest_layer(default_layer_state)) {
@@ -284,7 +282,7 @@ bool rgb_matrix_indicators_user(void) {
     switch (get_highest_layer(layer_state)) {
         // Handled in base layer fn so do nothing
         case 0:
-        case 1:
+        case 1:[33[]]
             break;
         // Sym
         case 2:
