@@ -13,7 +13,7 @@ enum sofle_layers {
     _NAV = 6,
     _W_NAV = 7,
     _FNC = 8,
-    _W_FNC = 9
+    _W_FNC = 9,
     _GME = 10,
 };
 
@@ -263,30 +263,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RM_SATD, KC_PAUS, KC_F1,   KC_F2,   KC_F3,   KC_F10, _______,       _______, _______, _______, _______, _______, _______, _______,
                     PDF(_GME), KC_APP, KC_SPC, KC_TAB, PDF(_MAC),       _______, _______, _______, _______, _______
  ),
-};
 
 /*
  * QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |  `   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * |  ESC |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  -   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | ESC  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  | Bspc |
+ * |   `  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |   \  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
- * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
+ * |------+------+------+------+------+------|  MUTE |    |PDF_MAC|------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            | LGUI | LAlt | LCTR | BSPC | /Enter  /       \Space \  |  DEL | RCTR | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
 
  [_GME] = LAYOUT(
-    KC_GRV,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_GRV,
-    KC_ESC,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_BSPC,
+    KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_MINS,
+    KC_GRV,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_BSLS,
     KC_TAB,   KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN,  KC_QUOT,
-    KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE,     XXXXXXX,KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_RSFT,
+    KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE,  PDF(_MAC),KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_RSFT,
                    KC_LGUI,KC_LALT,KC_LCTL,KC_BSPC, KC_ENT,      KC_SPC,  KC_DEL, KC_RCTL, KC_RALT, KC_RGUI
+   ),
+};
+
 
 bool rgb_matrix_indicators_user(void) {
     // Base layer indicators
@@ -307,7 +309,7 @@ bool rgb_matrix_indicators_user(void) {
     switch (get_highest_layer(layer_state)) {
         // Handled in base layer fn so do nothing
         case 0:
-        case 1:[33[]]
+        case 1:
             break;
         // Sym
         case 2:
@@ -368,6 +370,9 @@ void print_keymap_status(void) {
         case 1:
             oled_write_ln_P(PSTR("Win"), false);
             break;
+        case 10:
+            oled_write_P(PSTR("Game"), false);
+            break;
         default:
             oled_write_P(PSTR("Mod\n"), false);
             break;
@@ -394,9 +399,6 @@ void print_keymap_status(void) {
         case 8:
         case 9:
             oled_write_P(PSTR("Func."), false);
-            break;
-        case 10:
-            oled_write_P(PSTR("Game"), false);
             break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
