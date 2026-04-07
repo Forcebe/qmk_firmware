@@ -8,6 +8,7 @@
 #define TRI_LAYER_ADJUST_LAYER 4
 
 #define SPLIT_LAYER_STATE_ENABLE // Sync layer state for LED indicator
+#define COMBO_ONLY_FROM_LAYER 0 // Match combos against MAC layer keycodes regardless of active base layer
 
 #ifdef RGB_MATRIX_ENABLE
 
