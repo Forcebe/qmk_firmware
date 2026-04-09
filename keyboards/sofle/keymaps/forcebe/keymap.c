@@ -30,7 +30,7 @@ enum custom_keycodes {
 
 // Combos
 const uint16_t PROGMEM combo_caps_word[] = {LSFT_T(KC_F), RSFT_T(KC_J), COMBO_END};
-const uint16_t PROGMEM combo_tmux[]      = {LCTL_T(KC_A), ROPT_T(KC_L), COMBO_END};
+const uint16_t PROGMEM combo_tmux[]      = {LCTL_T(KC_A), RCTL_T(KC_SCLN), COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(combo_caps_word, CW_TOGG),
